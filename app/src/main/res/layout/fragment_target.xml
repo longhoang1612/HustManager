@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".screen.TargetFragment">
+
+    <RelativeLayout
+        android:id="@+id/relative_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/dimen_16"
+            android:contentDescription="@string/title_back"
+            android:src="@drawable/ic_keyboard_arrow_left_black_24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/image_back"
+            android:fontFamily="@font/sanfranciscodisplay_semibold"
+            android:text="@string/title_notifications"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/dimen_18sp" />
+
+    </RelativeLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_input_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relative_top">
+
+        <EditText
+            android:id="@+id/edit_total_credits"
+            android:layout_width="@dimen/dimen_120"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_20"
+            android:autofillHints="@string/total_credits"
+            android:hint="@string/total_credits"
+            android:inputType="number"
+            android:paddingStart="@dimen/dimen_5dp"
+            android:paddingEnd="@dimen/dimen_20"
+            android:textSize="@dimen/dimen_text_14" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <RadioGroup
+        android:id="@+id/radio_target"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_input_total">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:text="@string/target_excellent"
+            android:textColor="@color/color_grey_800"
+            android:textSize="@dimen/dimen_text_14" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:text="@string/target_great"
+            android:textColor="@color/color_grey_800" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:text="@string/target_good"
+            android:textColor="@color/color_grey_800" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:text="@string/target_avg"
+            android:textColor="@color/color_grey_800" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:text="@string/love_bk_forever"
+            android:textColor="@color/color_grey_800" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/text_target"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/message_target"
+        app:layout_constraintBottom_toBottomOf="@+id/text_input_total"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/text_input_total"
+        app:layout_constraintTop_toTopOf="@+id/text_input_total" />
+
+    <ImageView
+        android:layout_width="@dimen/dimen_150"
+        android:layout_height="@dimen/dimen_100"
+        android:contentDescription="@string/image_target"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_target"
+        app:layout_constraintBottom_toBottomOf="@+id/radio_target"
+        app:layout_constraintEnd_toEndOf="@+id/text_target"
+        app:layout_constraintStart_toStartOf="@+id/text_target"
+        app:layout_constraintTop_toTopOf="@+id/radio_target" />
+
+    <View
+        android:id="@+id/view_underline"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dimen_3"
+        android:layout_marginTop="@dimen/dimen_5"
+        android:background="@color/color_underline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radio_target" />
+
+    <ImageView
+        android:id="@+id/image_add"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_margin="10dp"
+        android:contentDescription="@string/image_add"
+        android:src="@drawable/ic_add"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_underline" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/sfprodisplay_regular"
+        android:text="@string/def_point"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="@dimen/dimen_26sp"
+        app:layout_constraintBottom_toTopOf="@+id/view_underline1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_underline" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_10"
+        android:fontFamily="@font/sfprodisplay_regular"
+        android:text="@string/def_credits"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="@dimen/dimen_text_14"
+        app:layout_constraintBottom_toTopOf="@+id/view_underline1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_underline" />
+
+    <View
+        android:id="@+id/view_underline1"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/dimen_3"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:background="@color/color_underline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_add" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_underline1" />
+
+</android.support.constraint.ConstraintLayout>
