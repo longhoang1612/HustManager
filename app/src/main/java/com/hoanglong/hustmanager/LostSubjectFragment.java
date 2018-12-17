@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.hoanglong.hustmanager.base.BaseFragment;
-import com.hoanglong.hustmanager.data.Subject;
+import com.hoanglong.hustmanager.database.Subject;
 import com.hoanglong.hustmanager.screen.FailSubjectAdapter;
 import com.hoanglong.hustmanager.utils.Constants;
 

@@ -10,7 +10,7 @@ import com.hoanglong.hustmanager.LostSubjectFragment;
 import com.hoanglong.hustmanager.R;
 import com.hoanglong.hustmanager.TabletPointFragment;
 import com.hoanglong.hustmanager.base.BaseFragment;
-import com.hoanglong.hustmanager.data.Subject;
+import com.hoanglong.hustmanager.database.Subject;
 import com.hoanglong.hustmanager.utils.Constants;
 import com.hoanglong.hustmanager.utils.FragmentTransactionUtils;
 import com.hoanglong.hustmanager.utils.SharedPrefs;

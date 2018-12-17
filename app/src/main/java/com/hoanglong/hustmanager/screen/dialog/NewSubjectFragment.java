@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hoanglong.hustmanager.R;
+import com.hoanglong.hustmanager.database.Subject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -80,5 +81,7 @@ public class NewSubjectFragment extends DialogFragment implements View.OnClickLi
         String code = mEditSubjectCode.getText().toString();
         String name = mEditSubjectName.getText().toString();
         String number = mEditSubjectNumber.getText().toString();
+
+        Subject subject = new Subject(code,name,number);
     }
 }

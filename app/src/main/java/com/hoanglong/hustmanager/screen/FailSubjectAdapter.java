@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.hoanglong.hustmanager.R;
-import com.hoanglong.hustmanager.data.Subject;
+import com.hoanglong.hustmanager.database.Subject;
 
 import java.util.List;
 

@@ -31,11 +31,4 @@ public abstract class BaseFragment extends Fragment {
         initComponent(view);
         initData(savedInstanceState);
     }
-
-    public BaseActivity getBaseActivity() {
-        if (getActivity() instanceof BaseActivity) {
-            return (BaseActivity) getActivity();
-        }
-        return null;
-    }
 }
