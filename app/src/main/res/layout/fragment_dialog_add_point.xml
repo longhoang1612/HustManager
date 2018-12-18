@@ -1,0 +1,271 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_white"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:id="@+id/text_input_id_subject"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:baselineAligned="false">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_5"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/edit_subject_hoc_ky"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/subject_id"
+                android:hint="@string/hoc_ky"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:textSize="@dimen/dimen_text_14" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_5"
+            android:layout_weight="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/edit_subject_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/subject_id"
+                android:hint="@string/subject_id"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:textSize="@dimen/dimen_text_14" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/text_name_subject"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_input_id_subject"
+        android:baselineAligned="false">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_5"
+            android:layout_weight="3">
+
+            <EditText
+                android:id="@+id/edit_subject_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/subject_name"
+                android:hint="@string/subject_name"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:textSize="@dimen/dimen_text_14" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_5"
+            android:layout_weight="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_id_subject">
+
+            <EditText
+                android:id="@+id/edit_subject_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/subject_name"
+                android:hint="@string/subject_number_credits"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:textSize="@dimen/dimen_text_14" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/text_input_number_credits"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_name_subject"
+        android:baselineAligned="false">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_5"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/edit_point_quatrinh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/subject_number_credits"
+                android:hint="@string/subject_quatrinh"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:textSize="@dimen/dimen_text_14" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_5"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/edit_point_thi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/subject_number_credits"
+                android:hint="@string/subject_thi"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:textSize="@dimen/dimen_text_14" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/radio_point_subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dimen_5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_input_number_credits">
+
+        <RadioButton
+            android:id="@+id/radio_a_a_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:text="@string/subject_a"
+            android:textSize="@dimen/dimen_text_14" />
+
+        <RadioButton
+            android:id="@+id/radio_b_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:text="@string/subject_b_plus"
+            android:textSize="@dimen/dimen_text_14" />
+
+        <RadioButton
+            android:id="@+id/radio_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:text="@string/subject_b"
+            android:textSize="@dimen/dimen_text_14" />
+
+        <RadioButton
+            android:id="@+id/radio_c_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:text="@string/subject_c_plus"
+            android:textSize="@dimen/dimen_text_14" />
+
+        <RadioButton
+            android:id="@+id/radio_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:text="@string/subject_c"
+            android:textSize="@dimen/dimen_text_14" />
+
+        <RadioButton
+            android:id="@+id/radio_d_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:text="@string/subject_d_plus"
+            android:textSize="@dimen/dimen_text_14" />
+
+        <RadioButton
+            android:id="@+id/radio_d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:text="@string/subject_d"
+            android:textSize="@dimen/dimen_text_14" />
+
+        <RadioButton
+            android:id="@+id/radio_f"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfprodisplay_regular"
+            android:text="@string/subject_f"
+            android:textSize="@dimen/dimen_text_14" />
+
+    </RadioGroup>
+
+    <ImageView
+        android:id="@+id/image_new_subject"
+        android:layout_width="@dimen/dimen_200"
+        android:layout_height="@dimen/dimen_200"
+        android:layout_margin="@dimen/dimen_5"
+        android:contentDescription="@string/image_new_subject"
+        android:src="@drawable/ic_new_subject"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/radio_point_subject"
+        app:layout_constraintTop_toBottomOf="@+id/text_input_number_credits" />
+
+    <TextView
+        android:id="@+id/text_cancel_new_subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_20"
+        android:fontFamily="@font/sanfranciscodisplay_bold"
+        android:text="@string/cancle_new_subject"
+        android:textAllCaps="true"
+        android:textColor="@color/color_blue_700"
+        android:textSize="@dimen/dimen_16sp"
+        app:layout_constraintEnd_toStartOf="@+id/text_save_new_subject"
+        app:layout_constraintTop_toTopOf="@+id/text_save_new_subject" />
+
+    <TextView
+        android:id="@+id/text_save_new_subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_20"
+        android:layout_marginBottom="@dimen/dimen_5"
+        android:fontFamily="@font/sanfranciscodisplay_bold"
+        android:text="@string/save_new_subject"
+        android:textAllCaps="true"
+        android:textColor="@color/color_blue_700"
+        android:textSize="@dimen/dimen_16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/radio_point_subject"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

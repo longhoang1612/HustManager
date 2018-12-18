@@ -8,9 +8,10 @@ import android.view.MenuItem;
 
 import com.hoanglong.hustmanager.R;
 import com.hoanglong.hustmanager.base.BaseActivity;
+import com.hoanglong.hustmanager.screen.dialog.NewSubjectFragment;
 import com.hoanglong.hustmanager.utils.FragmentTransactionUtils;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements NewSubjectFragment.OnChangeListener {
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -65,5 +66,13 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initData(Bundle savedInstanceState) {
 
+    }
+
+    @Override
+    public void onChangeListener(long id) {
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(TargetFragment.TAG);
+        if(fragment instanceof TargetFragment){
+            ((TargetFragment) fragment).onChangeListener(id);
+        }
     }
 }

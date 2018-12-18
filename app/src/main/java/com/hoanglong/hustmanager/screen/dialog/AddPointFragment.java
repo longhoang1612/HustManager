@@ -20,8 +20,8 @@ import com.hoanglong.hustmanager.database.Subject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class NewSubjectFragment extends DialogFragment implements View.OnClickListener {
-    public static final String TAG = NewSubjectFragment.class.getName();
+public class AddPointFragment extends DialogFragment implements View.OnClickListener {
+    public static final String TAG = AddPointFragment.class.getName();
 
     @BindView(R.id.text_save_new_subject)
     TextView mTextSaveSubject;
@@ -36,7 +36,7 @@ public class NewSubjectFragment extends DialogFragment implements View.OnClickLi
     @BindView(R.id.edit_subject_number)
     EditText mEditSubjectNumber;
     private DatabaseHelper db;
-    private OnChangeListener mOnChangeListener;
+    //private OnChangeListener mOnChangeListener;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class NewSubjectFragment extends DialogFragment implements View.OnClickLi
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_dialog_add_new, container, false);
+        return inflater.inflate(R.layout.fragment_dialog_add_point, container, false);
     }
 
     public interface OnChangeListener{
@@ -55,7 +55,7 @@ public class NewSubjectFragment extends DialogFragment implements View.OnClickLi
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mOnChangeListener = (OnChangeListener) context;
+ //       mOnChangeListener = (OnChangeListener) context;
     }
 
     @Override
@@ -137,7 +137,7 @@ public class NewSubjectFragment extends DialogFragment implements View.OnClickLi
         // newly inserted note id
         long id = db.insertSubject(subject);
 
-        mOnChangeListener.onChangeListener(id);
+        //mOnChangeListener.onChangeListener(id);
 
         // get the newly inserted note from db
     }

@@ -16,4 +16,5 @@
     <color name="color_bg">#eeeeee</color>
     <color name="color_underline">#eeeeee</color>
     <color name="color_black">#000000</color>
+    <color name="colorItemHeader">#009444</color>
 </resources>

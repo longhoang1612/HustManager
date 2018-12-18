@@ -40,16 +40,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long insertSuject(Subject subject) {
+    public long insertSubject(Subject subject) {
         // get writable database as we want to write data
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        // `id` and `timestamp` will be inserted automatically.
-        // no need to add them
+
         values.put(Subject.COLUMN_NAME, subject.getSubjectName());
         values.put(Subject.COLUMN_SUBJECT_CODE, subject.getSubjectCode());
         values.put(Subject.COLUMN_NUMBER_CREDITS, subject.getSubjectSoTinChi());
+        values.put(Subject.COLUMN_POINTS,subject.getPointSubject());
 
         // insert row
         long id = db.insert(Subject.TABLE_NAME, null, values);
@@ -66,7 +66,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(Subject.TABLE_NAME,
-                new String[]{Subject.COLUMN_ID, Subject.COLUMN_NAME, Subject.COLUMN_SUBJECT_CODE, Subject.COLUMN_NUMBER_CREDITS},
+                new String[]{Subject.COLUMN_ID, Subject.COLUMN_NAME, Subject.COLUMN_SUBJECT_CODE, Subject.COLUMN_NUMBER_CREDITS, Subject.COLUMN_POINTS},
                 Subject.COLUMN_ID + "=?",
                 new String[]{String.valueOf(id)}, null, null, null, null);
 
@@ -74,13 +74,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor.moveToFirst();
 
         // prepare subject object
-        Subject subject = null;
+        Subject subject;
         if (cursor != null) {
             subject = new Subject(
                     cursor.getInt(cursor.getColumnIndex(Subject.COLUMN_ID)),
                     cursor.getString(cursor.getColumnIndex(Subject.COLUMN_SUBJECT_CODE)),
                     cursor.getString(cursor.getColumnIndex(Subject.COLUMN_NAME)),
-                    cursor.getInt(cursor.getColumnIndex(Subject.COLUMN_NUMBER_CREDITS)));
+                    cursor.getInt(cursor.getColumnIndex(Subject.COLUMN_NUMBER_CREDITS)),
+                    cursor.getString(cursor.getColumnIndex(Subject.COLUMN_POINTS))
+            );
             cursor.close();
             return subject;
         }
@@ -104,7 +106,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 subject.setSubjectCode(cursor.getString(cursor.getColumnIndex(Subject.COLUMN_SUBJECT_CODE)));
                 subject.setSubjectName(cursor.getString(cursor.getColumnIndex(Subject.COLUMN_NAME)));
                 subject.setSubjectSoTinChi(cursor.getInt(cursor.getColumnIndex(Subject.COLUMN_NUMBER_CREDITS)));
-
+                subject.setPointSubject(cursor.getString(cursor.getColumnIndex(Subject.COLUMN_POINTS)));
                 subjects.add(subject);
             } while (cursor.moveToNext());
         }
@@ -124,7 +126,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int count = cursor.getCount();
         cursor.close();
 
-
         // return count
         return count;
     }
@@ -136,6 +137,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(Subject.COLUMN_NAME, subject.getSubjectName());
         values.put(Subject.COLUMN_SUBJECT_CODE, subject.getSubjectCode());
         values.put(Subject.COLUMN_NUMBER_CREDITS, subject.getSubjectSoTinChi());
+        values.put(Subject.COLUMN_POINTS, subject.getPointSubject());
 
         // updating row
         return db.update(Subject.TABLE_NAME, values, Subject.COLUMN_ID + " = ?",

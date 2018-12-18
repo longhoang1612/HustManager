@@ -1,0 +1,153 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RHE"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="0"
+    android:background="@color/colorItemHeader">
+
+    <TableRow android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/text_hoc_ky"
+                        android:layout_width="@dimen/dimen_50"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_10"
+                        android:fontFamily="@font/sanfranciscodisplay_semibold"
+                        android:text="Học kỳ"
+                        android:textAlignment="center"
+                        android:textColor="#FFFF" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/text_ma_hoc_phan"
+                        android:layout_width="@dimen/dimen_100"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_10"
+                        android:fontFamily="@font/sanfranciscodisplay_semibold"
+                        android:text="Mã học phần"
+                        android:textAlignment="textStart"
+                        android:textColor="#FFFF" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/text_ten_hoc_phan"
+                        android:layout_width="@dimen/dimen_150"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_10"
+                        android:fontFamily="@font/sanfranciscodisplay_semibold"
+                        android:text="Tên học phần"
+                        android:textAlignment="textStart"
+                        android:textColor="#FFFF" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/text_tin_chi"
+                        android:layout_width="@dimen/dimen_80"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_10"
+                        android:fontFamily="@font/sanfranciscodisplay_semibold"
+                        android:text="Tín chỉ"
+                        android:textAlignment="textStart"
+                        android:textColor="#FFFF" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/text_diem_qua_trinh"
+                        android:layout_width="@dimen/dimen_100"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_10"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/sanfranciscodisplay_semibold"
+                        android:maxLines="1"
+                        android:textAlignment="textStart"
+                        android:textColor="#FFFF" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/text_diem_thi"
+                        android:layout_width="@dimen/dimen_100"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_10"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/sanfranciscodisplay_semibold"
+                        android:maxLines="1"
+                        android:textAlignment="textStart"
+                        android:textColor="#FFFF" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/text_he_so"
+                        android:layout_width="@dimen/dimen_100"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_10"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/sanfranciscodisplay_semibold"
+                        android:maxLines="1"
+                        android:textAlignment="textStart"
+                        android:textColor="#FFFF" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/text_diem_chu"
+                        android:layout_width="@dimen/dimen_100"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_10"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/sanfranciscodisplay_semibold"
+                        android:maxLines="1"
+                        android:textAlignment="textStart"
+                        android:textColor="#FFFF" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.5dp"
+                android:background="#4d4d4d" />
+        </LinearLayout>
+
+    </TableRow>
+</TableLayout>
