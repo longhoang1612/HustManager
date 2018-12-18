@@ -155,6 +155,14 @@ public class PointAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 return;
             }
             mSubject = subject;
+            mTextMaHP.setText(subject.getSubjectCode());
+            mTextHocKy.setText(String.valueOf(subject.getHocKy()));
+            mTextTenHP.setText(String.valueOf(subject.getSubjectName()));
+            mTextTinChi.setText(String.valueOf(subject.getSubjectSoTinChi()));
+            mTextQuaTrinh.setText(String.valueOf(subject.getDiemQT()));
+            mTextDiemThi.setText(String.valueOf(subject.getDiemThi()));
+            mTextDiemChu.setText(String.valueOf(subject.getPointSubject()));
+            mTextHeSo.setText("Hệ số");
         }
 
         @Override

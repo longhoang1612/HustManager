@@ -40,6 +40,135 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    //POINT
+
+    public long insertPoint(Subject subject) {
+        // get writable database as we want to write data
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(Subject.COLUMN_HOCKY, subject.getSubjectName());
+        values.put(Subject.COLUMN_SUBJECT_CODE, subject.getSubjectCode());
+        values.put(Subject.COLUMN_NAME, subject.getSubjectName());
+        values.put(Subject.COLUMN_NUMBER_CREDITS, subject.getSubjectSoTinChi());
+        values.put(Subject.COLUMN_DIEMQT, subject.getSubjectSoTinChi());
+        values.put(Subject.COLUMN_DIEMCK, subject.getSubjectSoTinChi());
+        values.put(Subject.COLUMN_POINTS, subject.getPointSubject());
+
+        // insert row
+        long id = db.insert(Subject.TABLE_NAME, null, values);
+
+        // close db connection
+        db.close();
+
+        // return newly inserted row id
+        return id;
+    }
+
+    public Subject getPoint(long id) {
+        // get readable database as we are not inserting anything
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(Subject.TABLE_NAME,
+                new String[]{Subject.COLUMN_ID, Subject.COLUMN_HOCKY, Subject.COLUMN_NAME,
+                        Subject.COLUMN_SUBJECT_CODE, Subject.COLUMN_NUMBER_CREDITS,
+                        Subject.COLUMN_DIEMQT, Subject.COLUMN_DIEMCK, Subject.COLUMN_POINTS},
+                Subject.COLUMN_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        // prepare subject object
+        Subject subject;
+        if (cursor != null) {
+            subject = new Subject(
+                    cursor.getInt(cursor.getColumnIndex(Subject.COLUMN_ID)),
+                    cursor.getInt(cursor.getColumnIndex(Subject.COLUMN_HOCKY)),
+                    cursor.getFloat(cursor.getColumnIndex(Subject.COLUMN_DIEMQT)),
+                    cursor.getFloat(cursor.getColumnIndex(Subject.COLUMN_DIEMCK)),
+                    cursor.getString(cursor.getColumnIndex(Subject.COLUMN_SUBJECT_CODE)),
+                    cursor.getString(cursor.getColumnIndex(Subject.COLUMN_NAME)),
+                    cursor.getInt(cursor.getColumnIndex(Subject.COLUMN_NUMBER_CREDITS)),
+                    cursor.getString(cursor.getColumnIndex(Subject.COLUMN_POINTS))
+            );
+            cursor.close();
+            return subject;
+        }
+        return null;
+    }
+
+    public List<Subject> getAllPoint() {
+        List<Subject> subjects = new ArrayList<>();
+
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + Subject.TABLE_NAME;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Subject subject = new Subject();
+                subject.setIdSubject(cursor.getInt(cursor.getColumnIndex(Subject.COLUMN_ID)));
+                subject.setDiemQT(cursor.getFloat(cursor.getColumnIndex(Subject.COLUMN_DIEMQT)));
+                subject.setDiemThi(cursor.getFloat(cursor.getColumnIndex(Subject.COLUMN_DIEMCK)));
+                subject.setSubjectCode(cursor.getString(cursor.getColumnIndex(Subject.COLUMN_SUBJECT_CODE)));
+                subject.setSubjectName(cursor.getString(cursor.getColumnIndex(Subject.COLUMN_NAME)));
+                subject.setSubjectSoTinChi(cursor.getInt(cursor.getColumnIndex(Subject.COLUMN_NUMBER_CREDITS)));
+                subject.setPointSubject(cursor.getString(cursor.getColumnIndex(Subject.COLUMN_POINTS)));
+                subjects.add(subject);
+            } while (cursor.moveToNext());
+        }
+
+        // close db connection
+        db.close();
+
+        // return subjects list
+        return subjects;
+    }
+
+    public int getPointsCount() {
+        String countQuery = "SELECT  * FROM " + Subject.TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+
+        int count = cursor.getCount();
+        cursor.close();
+
+        // return count
+        return count;
+    }
+
+    public int updatePoint(Subject subject) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(Subject.COLUMN_NAME, subject.getSubjectName());
+        values.put(Subject.COLUMN_HOCKY, subject.getHocKy());
+        values.put(Subject.COLUMN_DIEMQT, subject.getDiemQT());
+        values.put(Subject.COLUMN_DIEMCK, subject.getDiemThi());
+        values.put(Subject.COLUMN_SUBJECT_CODE, subject.getSubjectCode());
+        values.put(Subject.COLUMN_NUMBER_CREDITS, subject.getSubjectSoTinChi());
+        values.put(Subject.COLUMN_POINTS, subject.getPointSubject());
+
+        // updating row
+        return db.update(Subject.TABLE_NAME, values, Subject.COLUMN_ID + " = ?",
+                new String[]{String.valueOf(subject.getIdSubject())});
+    }
+
+    public void deletePoint(Subject subject) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Subject.TABLE_NAME, Subject.COLUMN_ID + " = ?",
+                new String[]{String.valueOf(subject.getIdSubject())});
+        db.close();
+    }
+
+
+    //SUBJECT
+
     public long insertSubject(Subject subject) {
         // get writable database as we want to write data
         SQLiteDatabase db = this.getWritableDatabase();
@@ -49,7 +178,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(Subject.COLUMN_NAME, subject.getSubjectName());
         values.put(Subject.COLUMN_SUBJECT_CODE, subject.getSubjectCode());
         values.put(Subject.COLUMN_NUMBER_CREDITS, subject.getSubjectSoTinChi());
-        values.put(Subject.COLUMN_POINTS,subject.getPointSubject());
+        values.put(Subject.COLUMN_POINTS, subject.getPointSubject());
 
         // insert row
         long id = db.insert(Subject.TABLE_NAME, null, values);

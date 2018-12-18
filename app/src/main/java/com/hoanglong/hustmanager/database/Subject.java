@@ -21,7 +21,7 @@ public class Subject {
     private String mSubjectName;
     private int mSubjectSoTinChi;
     private String mPointSubject;
-    private boolean isHeader;
+    private boolean isHeader = true;
 
     public Subject() {
     }
@@ -34,8 +34,8 @@ public class Subject {
                     + COLUMN_SUBJECT_CODE + " TEXT,"
                     + COLUMN_NAME + " TEXT,"
                     + COLUMN_NUMBER_CREDITS + " INTEGER,"
-                    + COLUMN_DIEMQT + " INTEGER,"
-                    + COLUMN_DIEMCK + " INTEGER,"
+                    + COLUMN_DIEMQT + " FLOAT,"
+                    + COLUMN_DIEMCK + " FLOAT,"
                     + COLUMN_POINTS + " TEXT"
                     + ")";
 

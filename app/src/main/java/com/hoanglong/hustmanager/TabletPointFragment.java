@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.hoanglong.hustmanager.base.BaseFragment;
+import com.hoanglong.hustmanager.database.DatabaseHelper;
 import com.hoanglong.hustmanager.database.Subject;
 import com.hoanglong.hustmanager.screen.PointAdapter;
 import com.hoanglong.hustmanager.screen.dialog.AddPointFragment;
@@ -38,6 +39,7 @@ public class TabletPointFragment extends BaseFragment implements View.OnClickLis
     @BindView(R.id.ic_add)
     FloatingActionButton mFloatingActionAdd;
     private List<Subject> mSubjects;
+    private DatabaseHelper mDatabaseHelper;
 
     @Override
     protected int getLayoutResources() {
@@ -50,6 +52,7 @@ public class TabletPointFragment extends BaseFragment implements View.OnClickLis
         mImageBack.setOnClickListener(this);
         mSwipeRefresh.setOnRefreshListener(this);
         mFloatingActionAdd.setOnClickListener(this);
+        mDatabaseHelper = new DatabaseHelper(getContext());
     }
 
     @Override
@@ -96,6 +99,13 @@ public class TabletPointFragment extends BaseFragment implements View.OnClickLis
         Subject header = new Subject();
         header.setHeader(true);
         mSubjects.add(header);
+
+//        if(mDatabaseHelper.getAllPoint() == null){
+//            return;
+//        }
+
+        mSubjects.addAll(mDatabaseHelper.getAllPoint());
+
         PointAdapter pointAdapter = new PointAdapter(mSubjects,this);
         mRecyclerTabletPoint.setAdapter(pointAdapter);
     }
