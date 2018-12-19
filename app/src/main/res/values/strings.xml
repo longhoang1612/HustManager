@@ -64,4 +64,16 @@
     <string name="subject_quatrinh">Điểm quá trình</string>
     <string name="subject_thi">Điểm thi</string>
     <string name="he_so">Hệ số</string>
+
+    <string-array name="point_arrays">
+        <item>All</item>
+        <item>A/A+</item>
+        <item>B+</item>
+        <item>B</item>
+        <item>C+</item>
+        <item>C</item>
+        <item>D+</item>
+        <item>D</item>
+        <item>F</item>
+    </string-array>
 </resources>

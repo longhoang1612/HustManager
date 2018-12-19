@@ -47,12 +47,15 @@
         app:layout_constraintTop_toBottomOf="@+id/relative_top">
 
         <Spinner
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dimen_20"
+            android:id="@+id/spinner_point"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/dimen_20" />
+            android:entries="@array/point_arrays"/>
 
         <TextView
+            android:id="@+id/text_cpa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -62,6 +65,7 @@
             android:textSize="@dimen/dimen_26sp" />
 
         <TextView
+            android:id="@+id/total_tc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

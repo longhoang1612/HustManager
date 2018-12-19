@@ -7,11 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.MenuItem;
 
 import com.hoanglong.hustmanager.R;
+import com.hoanglong.hustmanager.TabletPointFragment;
 import com.hoanglong.hustmanager.base.BaseActivity;
+import com.hoanglong.hustmanager.screen.dialog.AddPointFragment;
 import com.hoanglong.hustmanager.screen.dialog.NewSubjectFragment;
 import com.hoanglong.hustmanager.utils.FragmentTransactionUtils;
 
-public class MainActivity extends BaseActivity implements NewSubjectFragment.OnChangeListener {
+public class MainActivity extends BaseActivity implements NewSubjectFragment.OnChangeListener, AddPointFragment.OnChangePointListener {
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -71,8 +73,16 @@ public class MainActivity extends BaseActivity implements NewSubjectFragment.OnC
     @Override
     public void onChangeListener(long id) {
         Fragment fragment = getSupportFragmentManager().findFragmentByTag(TargetFragment.TAG);
-        if(fragment instanceof TargetFragment){
+        if (fragment instanceof TargetFragment) {
             ((TargetFragment) fragment).onChangeListener(id);
+        }
+    }
+
+    @Override
+    public void onChangePointListener(long id) {
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(TabletPointFragment.TAG);
+        if (fragment instanceof TabletPointFragment) {
+            ((TabletPointFragment) fragment).onChangePointListener(id);
         }
     }
 }

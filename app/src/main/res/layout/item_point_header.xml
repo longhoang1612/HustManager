@@ -23,7 +23,7 @@
 
                     <TextView
                         android:id="@+id/text_hoc_ky"
-                        android:layout_width="@dimen/dimen_50"
+                        android:layout_width="@dimen/dimen_80"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_10"
                         android:fontFamily="@font/sanfranciscodisplay_semibold"
@@ -99,22 +99,6 @@
 
                     <TextView
                         android:id="@+id/text_diem_thi"
-                        android:layout_width="@dimen/dimen_100"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dimen_10"
-                        android:ellipsize="end"
-                        android:fontFamily="@font/sanfranciscodisplay_semibold"
-                        android:maxLines="1"
-                        android:textAlignment="textStart"
-                        android:textColor="#FFFF" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/text_he_so"
                         android:layout_width="@dimen/dimen_100"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_10"

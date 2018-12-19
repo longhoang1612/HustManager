@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,8 +36,14 @@ public class AddPointFragment extends DialogFragment implements View.OnClickList
     EditText mEditSubjectName;
     @BindView(R.id.edit_subject_number)
     EditText mEditSubjectNumber;
+    @BindView(R.id.edit_subject_hoc_ky)
+    EditText mEditHocky;
+    @BindView(R.id.edit_point_quatrinh)
+    EditText mEditPointQT;
+    @BindView(R.id.edit_point_thi)
+    EditText mEditPointCK;
     private DatabaseHelper db;
-    //private OnChangeListener mOnChangeListener;
+    private OnChangePointListener mOnChangePointListener;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,14 +55,14 @@ public class AddPointFragment extends DialogFragment implements View.OnClickList
         return inflater.inflate(R.layout.fragment_dialog_add_point, container, false);
     }
 
-    public interface OnChangeListener{
-        void onChangeListener(long id);
+    public interface OnChangePointListener {
+        void onChangePointListener(long id);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
- //       mOnChangeListener = (OnChangeListener) context;
+        mOnChangePointListener = (OnChangePointListener) context;
     }
 
     @Override
@@ -83,9 +90,10 @@ public class AddPointFragment extends DialogFragment implements View.OnClickList
     private void checkValid() {
         if (mEditSubjectCode.getText().toString().isEmpty()) {
             Toast.makeText(getContext(), "Bạn không được để trống mã học phần", Toast.LENGTH_SHORT).show();
-        } else if (
-                mEditSubjectName.getText().toString().isEmpty()) {
+        } else if (mEditSubjectName.getText().toString().isEmpty()) {
             Toast.makeText(getContext(), "Bạn không được để trống tên học phần", Toast.LENGTH_SHORT).show();
+        } else if (mEditHocky.getText().toString().isEmpty()) {
+            Toast.makeText(getContext(), "Bạn không được để trống học kỳ", Toast.LENGTH_SHORT).show();
         } else if (mEditSubjectNumber.getText().toString().isEmpty()) {
             Toast.makeText(getContext(), "Bạn không được để trống số tín chỉ học phần", Toast.LENGTH_SHORT).show();
         } else {
@@ -96,6 +104,9 @@ public class AddPointFragment extends DialogFragment implements View.OnClickList
     }
 
     private void saveNewSubject() {
+        int hocky = Integer.parseInt(mEditHocky.getText().toString());
+        float diemQT = Float.parseFloat(mEditPointQT.getText().toString());
+        float diemCK = Float.parseFloat(mEditPointCK.getText().toString());
         String code = mEditSubjectCode.getText().toString();
         String name = mEditSubjectName.getText().toString();
         String number = mEditSubjectNumber.getText().toString();
@@ -128,17 +139,15 @@ public class AddPointFragment extends DialogFragment implements View.OnClickList
                 break;
         }
 
-        Subject subject = new Subject(code, name, Integer.parseInt(number), point);
-        createSubject(subject);
+        Subject subject = new Subject(hocky,diemQT,diemCK,code, name, Integer.parseInt(number), point);
+        createPoint(subject);
     }
 
-    private void createSubject(Subject subject) {
+    private void createPoint(Subject subject) {
         // inserting note in db and getting
         // newly inserted note id
-        long id = db.insertSubject(subject);
+        long id = db.insertPoint(subject);
 
-        //mOnChangeListener.onChangeListener(id);
-
-        // get the newly inserted note from db
+        mOnChangePointListener.onChangePointListener(id);
     }
 }

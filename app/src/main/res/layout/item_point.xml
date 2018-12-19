@@ -2,8 +2,7 @@
     android:id="@+id/RHE"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_weight="0"
-    android:background="@color/colorItemHeader">
+    android:layout_weight="0">
 
     <TableRow android:layout_height="match_parent">
 
@@ -23,13 +22,12 @@
 
                     <TextView
                         android:id="@+id/text_hoc_ky"
-                        android:layout_width="@dimen/dimen_50"
+                        android:layout_width="@dimen/dimen_80"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_10"
                         android:fontFamily="@font/sanfranciscodisplay_semibold"
                         android:text="Học kỳ"
-                        android:textAlignment="center"
-                        android:textColor="#FFFF" />
+                        android:textAlignment="center" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -43,8 +41,7 @@
                         android:layout_margin="@dimen/dimen_10"
                         android:fontFamily="@font/sanfranciscodisplay_semibold"
                         android:text="Mã học phần"
-                        android:textAlignment="textStart"
-                        android:textColor="#FFFF" />
+                        android:textAlignment="textStart" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -58,8 +55,7 @@
                         android:layout_margin="@dimen/dimen_10"
                         android:fontFamily="@font/sanfranciscodisplay_semibold"
                         android:text="Tên học phần"
-                        android:textAlignment="textStart"
-                        android:textColor="#FFFF" />
+                        android:textAlignment="textStart" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -68,13 +64,12 @@
 
                     <TextView
                         android:id="@+id/text_tin_chi"
-                        android:layout_width="@dimen/dimen_150"
+                        android:layout_width="@dimen/dimen_80"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_10"
                         android:fontFamily="@font/sanfranciscodisplay_semibold"
                         android:text="Tín chỉ"
-                        android:textAlignment="textStart"
-                        android:textColor="#FFFF" />
+                        android:textAlignment="textStart" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -89,8 +84,7 @@
                         android:ellipsize="end"
                         android:fontFamily="@font/sanfranciscodisplay_semibold"
                         android:maxLines="1"
-                        android:textAlignment="textStart"
-                        android:textColor="#FFFF" />
+                        android:textAlignment="textStart" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -105,24 +99,7 @@
                         android:ellipsize="end"
                         android:fontFamily="@font/sanfranciscodisplay_semibold"
                         android:maxLines="1"
-                        android:textAlignment="textStart"
-                        android:textColor="#FFFF" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/text_he_so"
-                        android:layout_width="@dimen/dimen_300"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/dimen_10"
-                        android:ellipsize="end"
-                        android:fontFamily="@font/sanfranciscodisplay_semibold"
-                        android:maxLines="1"
-                        android:textAlignment="textStart"
-                        android:textColor="#FFFF" />
+                        android:textAlignment="textStart" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -131,14 +108,13 @@
 
                     <TextView
                         android:id="@+id/text_diem_chu"
-                        android:layout_width="@dimen/dimen_300"
+                        android:layout_width="@dimen/dimen_100"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/dimen_10"
                         android:ellipsize="end"
                         android:fontFamily="@font/sanfranciscodisplay_semibold"
                         android:maxLines="1"
-                        android:textAlignment="textStart"
-                        android:textColor="#FFFF" />
+                        android:textAlignment="textStart" />
                 </RelativeLayout>
 
             </LinearLayout>

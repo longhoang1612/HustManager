@@ -1,6 +1,9 @@
 package com.hoanglong.hustmanager.database;
 
-public class Subject {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Subject implements Parcelable {
 
     static final String TABLE_NAME = "subjects";
 
@@ -21,7 +24,7 @@ public class Subject {
     private String mSubjectName;
     private int mSubjectSoTinChi;
     private String mPointSubject;
-    private boolean isHeader = true;
+    private boolean isHeader = false;
 
     public Subject() {
     }
@@ -38,6 +41,30 @@ public class Subject {
                     + COLUMN_DIEMCK + " FLOAT,"
                     + COLUMN_POINTS + " TEXT"
                     + ")";
+
+    protected Subject(Parcel in) {
+        mIdSubject = in.readInt();
+        mHocKy = in.readInt();
+        mDiemQT = in.readFloat();
+        mDiemThi = in.readFloat();
+        mSubjectCode = in.readString();
+        mSubjectName = in.readString();
+        mSubjectSoTinChi = in.readInt();
+        mPointSubject = in.readString();
+        isHeader = in.readByte() != 0;
+    }
+
+    public static final Creator<Subject> CREATOR = new Creator<Subject>() {
+        @Override
+        public Subject createFromParcel(Parcel in) {
+            return new Subject(in);
+        }
+
+        @Override
+        public Subject[] newArray(int size) {
+            return new Subject[size];
+        }
+    };
 
     public boolean isHeader() {
         return isHeader;
@@ -145,5 +172,23 @@ public class Subject {
 
     public void setDiemThi(float diemThi) {
         mDiemThi = diemThi;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(mIdSubject);
+        dest.writeInt(mHocKy);
+        dest.writeFloat(mDiemQT);
+        dest.writeFloat(mDiemThi);
+        dest.writeString(mSubjectCode);
+        dest.writeString(mSubjectName);
+        dest.writeInt(mSubjectSoTinChi);
+        dest.writeString(mPointSubject);
+        dest.writeByte((byte) (isHeader ? 1 : 0));
     }
 }

@@ -48,12 +48,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
 
-        values.put(Subject.COLUMN_HOCKY, subject.getSubjectName());
+        values.put(Subject.COLUMN_HOCKY, subject.getHocKy());
         values.put(Subject.COLUMN_SUBJECT_CODE, subject.getSubjectCode());
         values.put(Subject.COLUMN_NAME, subject.getSubjectName());
         values.put(Subject.COLUMN_NUMBER_CREDITS, subject.getSubjectSoTinChi());
-        values.put(Subject.COLUMN_DIEMQT, subject.getSubjectSoTinChi());
-        values.put(Subject.COLUMN_DIEMCK, subject.getSubjectSoTinChi());
+        values.put(Subject.COLUMN_DIEMQT, subject.getDiemQT());
+        values.put(Subject.COLUMN_DIEMCK, subject.getDiemThi());
         values.put(Subject.COLUMN_POINTS, subject.getPointSubject());
 
         // insert row
@@ -119,6 +119,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 subject.setSubjectName(cursor.getString(cursor.getColumnIndex(Subject.COLUMN_NAME)));
                 subject.setSubjectSoTinChi(cursor.getInt(cursor.getColumnIndex(Subject.COLUMN_NUMBER_CREDITS)));
                 subject.setPointSubject(cursor.getString(cursor.getColumnIndex(Subject.COLUMN_POINTS)));
+                subject.setHocKy(cursor.getInt(cursor.getColumnIndex(Subject.COLUMN_HOCKY)));
                 subjects.add(subject);
             } while (cursor.moveToNext());
         }
@@ -146,12 +147,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(Subject.COLUMN_NAME, subject.getSubjectName());
-        values.put(Subject.COLUMN_HOCKY, subject.getHocKy());
         values.put(Subject.COLUMN_DIEMQT, subject.getDiemQT());
         values.put(Subject.COLUMN_DIEMCK, subject.getDiemThi());
-        values.put(Subject.COLUMN_SUBJECT_CODE, subject.getSubjectCode());
-        values.put(Subject.COLUMN_NUMBER_CREDITS, subject.getSubjectSoTinChi());
         values.put(Subject.COLUMN_POINTS, subject.getPointSubject());
 
         // updating row

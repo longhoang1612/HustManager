@@ -29,6 +29,7 @@ public class PointAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     public interface OnClickPointListener {
         void OnClickPoint(Subject subject);
+        void OnUpdateTC();
     }
 
     @NonNull
@@ -93,8 +94,6 @@ public class PointAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         TextView mTextDiemThi;
         @BindView(R.id.text_diem_chu)
         TextView mTextDiemChu;
-        @BindView(R.id.text_he_so)
-        TextView mTextHeSo;
 
         HeaderHolder(View itemView) {
             super(itemView);
@@ -109,7 +108,6 @@ public class PointAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             mTextQuaTrinh.setText("Điểm quá trình");
             mTextDiemThi.setText("Điểm thi");
             mTextDiemChu.setText("Điểm chữ");
-            mTextHeSo.setText("Hệ số");
 
             mTextMaHP.setTypeface(Typeface.DEFAULT_BOLD);
             mTextHocKy.setTypeface(Typeface.DEFAULT_BOLD);
@@ -118,7 +116,6 @@ public class PointAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             mTextQuaTrinh.setTypeface(Typeface.DEFAULT_BOLD);
             mTextDiemThi.setTypeface(Typeface.DEFAULT_BOLD);
             mTextDiemChu.setTypeface(Typeface.DEFAULT_BOLD);
-            mTextHeSo.setTypeface(Typeface.DEFAULT_BOLD);
         }
     }
 
@@ -138,8 +135,6 @@ public class PointAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         TextView mTextDiemThi;
         @BindView(R.id.text_diem_chu)
         TextView mTextDiemChu;
-        @BindView(R.id.text_he_so)
-        TextView mTextHeSo;
         private Subject mSubject;
         private OnClickPointListener mOnClickPointListener;
 
@@ -148,6 +143,7 @@ public class PointAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             ButterKnife.bind(this, itemView);
             mOnClickPointListener = onClickPointListener;
             itemView.setOnClickListener(this);
+            mOnClickPointListener.OnUpdateTC();
         }
 
         public void setData(Subject subject) {
@@ -162,7 +158,6 @@ public class PointAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             mTextQuaTrinh.setText(String.valueOf(subject.getDiemQT()));
             mTextDiemThi.setText(String.valueOf(subject.getDiemThi()));
             mTextDiemChu.setText(String.valueOf(subject.getPointSubject()));
-            mTextHeSo.setText("Hệ số");
         }
 
         @Override
