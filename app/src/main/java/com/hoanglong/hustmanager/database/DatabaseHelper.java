@@ -10,6 +10,12 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.hoanglong.hustmanager.database.User.KEY_EMAIL;
+import static com.hoanglong.hustmanager.database.User.KEY_ID;
+import static com.hoanglong.hustmanager.database.User.KEY_PASSWORD;
+import static com.hoanglong.hustmanager.database.User.KEY_USER_NAME;
+import static com.hoanglong.hustmanager.database.User.TABLE_USERS;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Database Version
@@ -32,6 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(Teacher.CREATE_TABLE);
         db.execSQL(Class.CREATE_TABLE);
         db.execSQL(Student.CREATE_TABLE);
+        db.execSQL(User.SQL_TABLE_USERS);
     }
 
     // Upgrading database
@@ -42,8 +49,70 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + Teacher.TABLET_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + Class.TABLET_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + Student.TABLET_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
         // Create tables again
         onCreate(db);
+    }
+
+    //User
+    public void addUser(User user) {
+
+        //get writable database
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        //create content values to insert
+        ContentValues values = new ContentValues();
+
+        //Put username in  @values
+        values.put(KEY_USER_NAME, user.userName);
+
+        //Put email in  @values
+        values.put(KEY_EMAIL, user.email);
+
+        //Put password in  @values
+        values.put(KEY_PASSWORD, user.password);
+
+        // insert row
+        long todo_id = db.insert(TABLE_USERS, null, values);
+    }
+
+    public User Authenticate(User user) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_USERS,// Selecting Table
+                new String[]{KEY_ID, KEY_USER_NAME, KEY_EMAIL, KEY_PASSWORD},//Selecting columns want to query
+                KEY_EMAIL + "=?",
+                new String[]{user.email},//Where clause
+                null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            //if cursor has value then in user database there is user associated with this given email
+            User user1 = new User(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
+
+            //Match both passwords check they are same or not
+            if (user.password.equalsIgnoreCase(user1.password)) {
+                return user1;
+            }
+        }
+
+        //if user password does not matches or there is no record with that email then return @false
+        return null;
+    }
+
+    public boolean isEmailExists(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_USERS,// Selecting Table
+                new String[]{KEY_ID, KEY_USER_NAME, KEY_EMAIL, KEY_PASSWORD},//Selecting columns want to query
+                KEY_EMAIL + "=?",
+                new String[]{email},//Where clause
+                null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            //if cursor has value then in user database there is user associated with this given email so return true
+            return true;
+        }
+
+        //if email does not exist return false
+        return false;
     }
 
     //Teacher
