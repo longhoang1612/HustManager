@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // create Subjects table
         db.execSQL(Subject.CREATE_TABLE);
+        db.execSQL(Teacher.CREATE_TABLE);
+        db.execSQL(Class.CREATE_TABLE);
+        db.execSQL(Student.CREATE_TABLE);
     }
 
     // Upgrading database
@@ -35,9 +39,189 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + Subject.TABLE_NAME);
-
+        db.execSQL("DROP TABLE IF EXISTS " + Teacher.TABLET_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + Class.TABLET_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + Student.TABLET_NAME);
         // Create tables again
         onCreate(db);
+    }
+
+    //Teacher
+    public long insertGV(Teacher teacher) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(Teacher.COLUMN_USER_NAME, teacher.getUserName());
+        values.put(Teacher.COLUMN_PASSWORD, teacher.getPassword());
+
+        // insert row
+        long id = db.insert(Teacher.TABLET_NAME, null, values);
+
+        // close db connection
+        db.close();
+
+        // return newly inserted row id
+        return id;
+    }
+
+    public long addClass(Class objClass) {
+        Log.d("CLASS", "addClass: " + objClass);
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(Class.COLUMN_CLASS_HK, objClass.getHocky());
+        values.put(Class.COLUMN_CLASS_MALH, objClass.getMaLH());
+        values.put(Class.COLUMN_CLASS_TENHP, objClass.getTenHP());
+        values.put(Class.COLUMN_CLASS_SOTC, objClass.getSoTC());
+        values.put(Class.COLUMN_CLASS_TENGV, objClass.getTenGV());
+        values.put(Class.COLUMN_CLASS_IDGV, objClass.getIdGV());
+
+        // insert row
+        long id = db.insert(Class.TABLET_NAME, null, values);
+
+        // close db connection
+        db.close();
+
+        // return newly inserted row id
+        return id;
+    }
+
+    public List<Class> getClassWithGV(String nameGV) {
+        List<Class> classes = new ArrayList<>();
+
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + Class.TABLET_NAME + " WHERE  giaovien = 'a'";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Class aClass = new Class();
+                aClass.setId(cursor.getInt(cursor.getColumnIndex(Class.COLUMN_ID)));
+                aClass.setHocky(cursor.getInt(cursor.getColumnIndex(Class.COLUMN_CLASS_HK)));
+                aClass.setIdGV(cursor.getString(cursor.getColumnIndex(Class.COLUMN_CLASS_IDGV)));
+                aClass.setMaLH(cursor.getString(cursor.getColumnIndex(Class.COLUMN_CLASS_MALH)));
+                aClass.setSoTC(cursor.getInt(cursor.getColumnIndex(Class.COLUMN_CLASS_SOTC)));
+                aClass.setTenGV(cursor.getString(cursor.getColumnIndex(Class.COLUMN_CLASS_TENGV)));
+                aClass.setTenHP(cursor.getString(cursor.getColumnIndex(Class.COLUMN_CLASS_TENHP)));
+
+                classes.add(aClass);
+
+            } while (cursor.moveToNext());
+        }
+
+        // close db connection
+        db.close();
+
+        // return subjects list
+        return classes;
+    }
+
+    //Student
+
+    public long insertStudent(Student student) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+
+        values.put(Student.COLUMN_STUDENT_NAME, student.getNameStudent());
+        values.put(Student.COLUMN_STUDENT_DIEMCK, student.getDiemCK());
+        values.put(Student.COLUMN_STUDENT_DIEMQT, student.getDiemQT());
+        values.put(Student.COLUMN_STUDENT_LOPHOC, student.getMaLopHoc());
+        values.put(Student.COLUMN_STUDENT_MAHP, student.getMaLopMonHoc());
+        values.put(Student.COLUMN_STUDENT_MASV, student.getMaSV());
+
+        // insert row
+        long id = db.insert(Student.TABLET_NAME, null, values);
+
+        // close db connection
+        db.close();
+
+        // return newly inserted row id
+        return id;
+    }
+
+    public List<Student> getStudentWithIdClass(String maHP) {
+        List<Student> students = new ArrayList<>();
+
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + Student.TABLET_NAME + " WHERE " + Student.COLUMN_STUDENT_MAHP + " = ? ";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{maHP});
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Student student = new Student();
+
+                student.setId(cursor.getInt(cursor.getColumnIndex(Student.COLUMN_STUDENT_ID)));
+                student.setNameStudent(cursor.getString(cursor.getColumnIndex(Student.COLUMN_STUDENT_NAME)));
+                student.setMaSV(cursor.getString(cursor.getColumnIndex(Student.COLUMN_STUDENT_MASV)));
+                student.setMaLopMonHoc(cursor.getString(cursor.getColumnIndex(Student.COLUMN_STUDENT_MAHP)));
+                student.setMaLopHoc(cursor.getString(cursor.getColumnIndex(Student.COLUMN_STUDENT_LOPHOC)));
+                student.setDiemCK(cursor.getFloat(cursor.getColumnIndex(Student.COLUMN_STUDENT_DIEMCK)));
+                student.setDiemQT(cursor.getFloat(cursor.getColumnIndex(Student.COLUMN_STUDENT_DIEMQT)));
+
+                students.add(student);
+            } while (cursor.moveToNext());
+        }
+
+        // close db connection
+        db.close();
+
+        // return subjects list
+        return students;
+    }
+
+    public Student getStudent(long id) {
+        // get readable database as we are not inserting anything
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(Student.TABLET_NAME,
+                new String[]{Student.COLUMN_STUDENT_ID, Student.COLUMN_STUDENT_NAME,
+                        Student.COLUMN_STUDENT_MASV, Student.COLUMN_STUDENT_MAHP,
+                        Student.COLUMN_STUDENT_LOPHOC, Student.COLUMN_STUDENT_DIEMCK, Student.COLUMN_STUDENT_DIEMQT},
+                Student.COLUMN_STUDENT_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        // prepare subject object
+        Student student;
+        if (cursor != null) {
+            student = new Student(
+                    cursor.getString(cursor.getColumnIndex(Student.COLUMN_STUDENT_NAME)),
+                    cursor.getString(cursor.getColumnIndex(Student.COLUMN_STUDENT_LOPHOC)),
+                    cursor.getString(cursor.getColumnIndex(Student.COLUMN_STUDENT_MAHP)),
+                    cursor.getString(cursor.getColumnIndex(Student.COLUMN_STUDENT_MASV)),
+                    cursor.getFloat(cursor.getColumnIndex(Student.COLUMN_STUDENT_DIEMQT)),
+                    cursor.getFloat(cursor.getColumnIndex(Student.COLUMN_STUDENT_DIEMCK)),
+                    cursor.getInt(cursor.getColumnIndex(Student.COLUMN_STUDENT_ID))
+            );
+            cursor.close();
+            return student;
+        }
+        return null;
+    }
+
+    public int updateStudent(Student student) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(Student.COLUMN_STUDENT_NAME, student.getNameStudent());
+        values.put(Student.COLUMN_STUDENT_DIEMQT, student.getDiemQT());
+        values.put(Student.COLUMN_STUDENT_DIEMCK, student.getDiemCK());
+        values.put(Student.COLUMN_STUDENT_MASV, student.getMaSV());
+
+        // updating row
+        return db.update(Student.TABLET_NAME, values, Student.COLUMN_STUDENT_MASV + " = ?",
+                new String[]{String.valueOf(student.getMaSV())});
     }
 
     //POINT

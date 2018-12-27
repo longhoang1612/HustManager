@@ -13,7 +13,7 @@
         <activity
             android:name=".screen.MainActivity"
             android:label="@string/app_name" />
-        <activity android:name=".screen.login.LoginActivity"/>
+        <activity android:name=".screen.login.LoginActivity" />
         <activity android:name=".screen.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".TeacherActivity" />
+        <activity android:name=".AddClassActivity" />
+        <activity android:name=".DetailClassActivity"></activity>
     </application>
 
 </manifest>

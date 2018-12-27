@@ -10,7 +10,7 @@
     <string name="password">Nhập password</string>
     <string name="log_in">Đăng nhập</string>
     <string name="lost_pass">Quên mật khẩu</string>
-    <string name="name">Nhập họ và tên sinh viên</string>
+    <string name="name">Nhập họ và tên</string>
     <string name="male">Nam</string>
     <string name="female">Nữ</string>
     <string name="sign_in">Đăng ký</string>
@@ -75,5 +75,24 @@
         <item>D+</item>
         <item>D</item>
         <item>F</item>
+    </string-array>
+
+    <string-array name="point_hk">
+        <item>20141</item>
+        <item>20142</item>
+        <item>20143</item>
+        <item>20151</item>
+        <item>20152</item>
+        <item>20153</item>
+        <item>20161</item>
+        <item>20162</item>
+        <item>20163</item>
+        <item>20171</item>
+        <item>20172</item>
+        <item>20173</item>
+        <item>20181</item>
+        <item>20182</item>
+        <item>20183</item>
+        <item>20191</item>
     </string-array>
 </resources>

@@ -17,7 +17,7 @@
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:hint="@string/mssv" />
+            android:hint="Họ và tên" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -39,6 +39,33 @@
 
     </android.support.design.widget.TextInputLayout>
 
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_20"
+        android:orientation="horizontal"
+        android:theme="@style/radio_button">
+
+        <RadioButton
+            android:id="@+id/radio_gv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_20"
+            android:checked="false"
+            android:text="Giáo viên"
+            android:textSize="@dimen/dimen_text_14"
+            android:theme="@style/radio_button" />
+
+        <RadioButton
+            android:id="@+id/radio_sv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sinh viên"
+            android:textSize="@dimen/dimen_text_14"
+            android:theme="@style/radio_button" />
+    </RadioGroup>
+
     <Button
         android:id="@+id/button_login"
         android:layout_width="match_parent"
@@ -49,14 +76,6 @@
         android:background="@drawable/custom_button1"
         android:text="@string/log_in"
         android:textColor="#fff" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/dimen_20"
-        android:text="@string/lost_pass"
-        android:textColor="@color/color_blue_700" />
 
 </LinearLayout>
 

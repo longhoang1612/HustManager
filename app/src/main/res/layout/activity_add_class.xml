@@ -1,0 +1,136 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_white"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:id="@+id/text_input_id_subject"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:entries="@array/point_hk"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/spinner_hoc_ky"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_5"
+            >
+
+            <EditText
+                android:imeOptions="actionNext"
+                android:id="@+id/edit_subject_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/subject_id"
+                android:hint="@string/subject_id"
+                android:inputType="text"
+                android:textSize="@dimen/dimen_text_14" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_name_subject"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_input_id_subject">
+
+        <EditText
+            android:imeOptions="actionNext"
+            android:id="@+id/edit_subject_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/subject_name"
+            android:hint="@string/subject_name"
+            android:inputType="text"
+            android:textSize="@dimen/dimen_text_14" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_input_number_credits"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_name_subject">
+
+        <EditText
+            android:imeOptions="actionDone"
+            android:id="@+id/edit_subject_number"
+            android:autofillHints="@string/subject_number_credits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/subject_number_credits"
+            android:inputType="number"
+            android:textSize="@dimen/dimen_text_14" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/text_input_ma_lop"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_input_number_credits">
+
+        <EditText
+            android:imeOptions="actionDone"
+            android:id="@+id/edit_ma_lop"
+            android:autofillHints="@string/subject_number_credits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mã lớp học"
+            android:inputType="number"
+            android:textSize="@dimen/dimen_text_14" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <TextView
+        app:layout_constraintTop_toTopOf="@+id/text_save_new_subject"
+        app:layout_constraintEnd_toStartOf="@+id/text_save_new_subject"
+        android:id="@+id/text_cancel_new_subject"
+        android:textAllCaps="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_20"
+        android:fontFamily="@font/sanfranciscodisplay_bold"
+        android:text="@string/cancle_new_subject"
+        android:textColor="@color/color_blue_700"
+        android:textSize="@dimen/dimen_16sp"
+         />
+
+    <TextView
+        app:layout_constraintTop_toBottomOf="@+id/text_input_ma_lop"
+        android:textAllCaps="true"
+        android:id="@+id/text_save_new_subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimen_20"
+        android:layout_marginBottom="@dimen/dimen_5"
+        android:fontFamily="@font/sanfranciscodisplay_bold"
+        android:text="@string/save_new_subject"
+        android:textColor="@color/color_blue_700"
+        android:textSize="@dimen/dimen_16sp"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
