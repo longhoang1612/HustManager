@@ -141,6 +141,8 @@ public class EditStudentFragment extends DialogFragment implements View.OnClickL
         Student student = new Student();
         student.setNameStudent(name);
         student.setMaSV(mssv);
+        student.setMaLopMonHoc(hocphan);
+        student.setMaLopHoc(lopsv);
         student.setDiemCK(diemCK);
         student.setDiemQT(diemQT);
 

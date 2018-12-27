@@ -21,11 +21,11 @@ public class Class implements Parcelable {
     private String tenGV;
     private String idGV;
     private int hocky;
-    private int id;
+    private String id;
 
     static final String CREATE_TABLE =
             "CREATE TABLE " + TABLET_NAME + "("
-                    + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + COLUMN_ID + " TEXT PRIMARY KEY,"
                     + COLUMN_CLASS_HK + " INTEGER,"
                     + COLUMN_CLASS_SOTC + " INTEGER,"
                     + COLUMN_CLASS_MALH + " TEXT,"
@@ -37,7 +37,8 @@ public class Class implements Parcelable {
     public Class() {
     }
 
-    public Class(String maLH, int soTC, String tenHP, String tenGV, String idGV, int hocky) {
+    public Class(String id, String maLH, int soTC, String tenHP, String tenGV, String idGV, int hocky) {
+        this.id = id;
         this.maLH = maLH;
         this.soTC = soTC;
         this.tenHP = tenHP;
@@ -46,11 +47,11 @@ public class Class implements Parcelable {
         this.hocky = hocky;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

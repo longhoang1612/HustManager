@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + Teacher.TABLET_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + Class.TABLET_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + Student.TABLET_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
+        db.execSQL("DROP TABLE IF EXISTS " + User.TABLE_USERS);
         // Create tables again
         onCreate(db);
     }
@@ -100,9 +99,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean isEmailExists(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_USERS,// Selecting Table
-                new String[]{KEY_ID, KEY_USER_NAME, KEY_EMAIL, KEY_PASSWORD},//Selecting columns want to query
-                KEY_EMAIL + "=?",
+        Cursor cursor = db.query(User.TABLE_USERS,// Selecting Table
+                new String[]{User.KEY_ID, User.KEY_USER_NAME, User.KEY_EMAIL, User.KEY_PASSWORD},//Selecting columns want to query
+                User.KEY_EMAIL + "=?",
                 new String[]{email},//Where clause
                 null, null, null);
 
@@ -113,6 +112,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         //if email does not exist return false
         return false;
+    }
+
+    public User getUser(String email) {
+        // get readable database as we are not inserting anything
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(User.TABLE_USERS,
+                new String[]{User.KEY_ID, User.KEY_EMAIL,
+                        User.KEY_USER_NAME, User.KEY_PASSWORD},
+                User.KEY_EMAIL + "=?",
+                new String[]{String.valueOf(email)}, null, null, null, null);
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        // prepare subject object
+        User user;
+        if (cursor != null) {
+            user = new User(
+                    cursor.getString(cursor.getColumnIndex(User.KEY_ID)),
+                    cursor.getString(cursor.getColumnIndex(User.KEY_USER_NAME)),
+                    cursor.getString(cursor.getColumnIndex(User.KEY_EMAIL)),
+                    cursor.getString(cursor.getColumnIndex(User.KEY_PASSWORD))
+            );
+            cursor.close();
+            return user;
+        }
+        return null;
     }
 
     //Teacher
@@ -135,11 +162,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public long addClass(Class objClass) {
-        Log.d("CLASS", "addClass: " + objClass);
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
 
+        values.put(Class.COLUMN_ID, objClass.getId());
         values.put(Class.COLUMN_CLASS_HK, objClass.getHocky());
         values.put(Class.COLUMN_CLASS_MALH, objClass.getMaLH());
         values.put(Class.COLUMN_CLASS_TENHP, objClass.getTenHP());
@@ -161,16 +188,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<Class> classes = new ArrayList<>();
 
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + Class.TABLET_NAME + " WHERE  giaovien = 'a'";
+        String selectQuery = "SELECT  * FROM " + Class.TABLET_NAME + " WHERE  giaovien = ?";
 
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{nameGV});
 
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
                 Class aClass = new Class();
-                aClass.setId(cursor.getInt(cursor.getColumnIndex(Class.COLUMN_ID)));
+                aClass.setId(cursor.getString(cursor.getColumnIndex(Class.COLUMN_ID)));
                 aClass.setHocky(cursor.getInt(cursor.getColumnIndex(Class.COLUMN_CLASS_HK)));
                 aClass.setIdGV(cursor.getString(cursor.getColumnIndex(Class.COLUMN_CLASS_IDGV)));
                 aClass.setMaLH(cursor.getString(cursor.getColumnIndex(Class.COLUMN_CLASS_MALH)));
@@ -203,6 +230,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(Student.COLUMN_STUDENT_LOPHOC, student.getMaLopHoc());
         values.put(Student.COLUMN_STUDENT_MAHP, student.getMaLopMonHoc());
         values.put(Student.COLUMN_STUDENT_MASV, student.getMaSV());
+        values.put(Student.COLUMN_STUDENT_IMAGE, student.getImage());
 
         // insert row
         long id = db.insert(Student.TABLET_NAME, null, values);
@@ -227,8 +255,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Student student = new Student();
-
-                student.setId(cursor.getInt(cursor.getColumnIndex(Student.COLUMN_STUDENT_ID)));
+                student.setImage(cursor.getString(cursor.getColumnIndex(Student.COLUMN_STUDENT_IMAGE)));
+                student.setId(cursor.getString(cursor.getColumnIndex(Student.COLUMN_STUDENT_ID)));
                 student.setNameStudent(cursor.getString(cursor.getColumnIndex(Student.COLUMN_STUDENT_NAME)));
                 student.setMaSV(cursor.getString(cursor.getColumnIndex(Student.COLUMN_STUDENT_MASV)));
                 student.setMaLopMonHoc(cursor.getString(cursor.getColumnIndex(Student.COLUMN_STUDENT_MAHP)));
@@ -252,7 +280,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(Student.TABLET_NAME,
-                new String[]{Student.COLUMN_STUDENT_ID, Student.COLUMN_STUDENT_NAME,
+                new String[]{Student.COLUMN_STUDENT_ID, Student.COLUMN_STUDENT_NAME,Student.COLUMN_STUDENT_IMAGE,
                         Student.COLUMN_STUDENT_MASV, Student.COLUMN_STUDENT_MAHP,
                         Student.COLUMN_STUDENT_LOPHOC, Student.COLUMN_STUDENT_DIEMCK, Student.COLUMN_STUDENT_DIEMQT},
                 Student.COLUMN_STUDENT_ID + "=?",
@@ -266,12 +294,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor != null) {
             student = new Student(
                     cursor.getString(cursor.getColumnIndex(Student.COLUMN_STUDENT_NAME)),
+                    cursor.getString(cursor.getColumnIndex(Student.COLUMN_STUDENT_IMAGE)),
                     cursor.getString(cursor.getColumnIndex(Student.COLUMN_STUDENT_LOPHOC)),
                     cursor.getString(cursor.getColumnIndex(Student.COLUMN_STUDENT_MAHP)),
                     cursor.getString(cursor.getColumnIndex(Student.COLUMN_STUDENT_MASV)),
                     cursor.getFloat(cursor.getColumnIndex(Student.COLUMN_STUDENT_DIEMQT)),
                     cursor.getFloat(cursor.getColumnIndex(Student.COLUMN_STUDENT_DIEMCK)),
-                    cursor.getInt(cursor.getColumnIndex(Student.COLUMN_STUDENT_ID))
+                    cursor.getString(cursor.getColumnIndex(Student.COLUMN_STUDENT_ID))
             );
             cursor.close();
             return student;
@@ -283,14 +312,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(Student.COLUMN_STUDENT_IMAGE,student.getImage());
         values.put(Student.COLUMN_STUDENT_NAME, student.getNameStudent());
         values.put(Student.COLUMN_STUDENT_DIEMQT, student.getDiemQT());
         values.put(Student.COLUMN_STUDENT_DIEMCK, student.getDiemCK());
+        values.put(Student.COLUMN_STUDENT_LOPHOC, student.getMaLopHoc());
         values.put(Student.COLUMN_STUDENT_MASV, student.getMaSV());
 
         // updating row
         return db.update(Student.TABLET_NAME, values, Student.COLUMN_STUDENT_MASV + " = ?",
-                new String[]{String.valueOf(student.getMaSV())});
+                new String[]{student.getMaSV()});
     }
 
     //POINT

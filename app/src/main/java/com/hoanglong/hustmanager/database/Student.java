@@ -10,7 +10,8 @@ public class Student implements Parcelable {
     private String maSV;
     private Float diemQT;
     private Float diemCK;
-    private int id;
+    private String id;
+    private String image;
 
     public static final String COLUMN_STUDENT_NAME = "name_student";
     public static final String COLUMN_STUDENT_LOPHOC = "lophoc";
@@ -20,14 +21,16 @@ public class Student implements Parcelable {
     public static final String COLUMN_STUDENT_DIEMCK = "diem_ck";
     public static final String COLUMN_STUDENT_ID = "id";
     public static final String TABLET_NAME = "student";
+    public static final String COLUMN_STUDENT_IMAGE = "anhsv";
 
     public Student() {
     }
 
     static final String CREATE_TABLE =
             "CREATE TABLE " + TABLET_NAME + "("
-                    + COLUMN_STUDENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + COLUMN_STUDENT_ID + " TEXT PRIMARY KEY,"
                     + COLUMN_STUDENT_NAME + " TEXT,"
+                    + COLUMN_STUDENT_IMAGE + " TEXT,"
                     + COLUMN_STUDENT_LOPHOC + " TEXT,"
                     + COLUMN_STUDENT_MAHP + " TEXT,"
                     + COLUMN_STUDENT_MASV + " TEXT,"
@@ -35,8 +38,9 @@ public class Student implements Parcelable {
                     + COLUMN_STUDENT_DIEMCK + " FLOAT"
                     + ")";
 
-    public Student(String nameStudent, String maLopHoc, String maLopMonHoc, String maSV, Float diemQT, Float diemCK, int id) {
+    public Student(String nameStudent,String image, String maLopHoc, String maLopMonHoc, String maSV, Float diemQT, Float diemCK, String id) {
         this.nameStudent = nameStudent;
+        this.image = image;
         this.maLopHoc = maLopHoc;
         this.maLopMonHoc = maLopMonHoc;
         this.maSV = maSV;
@@ -60,7 +64,8 @@ public class Student implements Parcelable {
         } else {
             diemCK = in.readFloat();
         }
-        id = in.readInt();
+        id = in.readString();
+        image = in.readString();
     }
 
     public static final Creator<Student> CREATOR = new Creator<Student>() {
@@ -98,7 +103,8 @@ public class Student implements Parcelable {
             parcel.writeByte((byte) 1);
             parcel.writeFloat(diemCK);
         }
-        parcel.writeInt(id);
+        parcel.writeString(id);
+        parcel.writeString(image);
     }
 
     public String getNameStudent() {
@@ -149,11 +155,19 @@ public class Student implements Parcelable {
         this.diemCK = diemCK;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

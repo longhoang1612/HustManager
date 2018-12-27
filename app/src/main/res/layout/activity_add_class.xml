@@ -92,16 +92,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_input_number_credits">
 
-        <EditText
-            android:imeOptions="actionDone"
-            android:id="@+id/edit_ma_lop"
-            android:autofillHints="@string/subject_number_credits"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Mã lớp học"
-            android:inputType="number"
-            android:textSize="@dimen/dimen_text_14" />
-
     </android.support.design.widget.TextInputLayout>
 
 

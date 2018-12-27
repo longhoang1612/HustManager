@@ -6,6 +6,16 @@
     android:clickable="true"
     android:focusable="true">
 
+    <ImageView
+        android:id="@+id/image_student"
+        android:layout_width="@dimen/dimen_150"
+        android:layout_height="@dimen/dimen_150"
+        android:layout_marginTop="@dimen/dimen_10"
+        android:src="@drawable/ic_account_circle_black_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <android.support.design.widget.TextInputLayout
         android:id="@+id/text_input_id_subject"
         android:layout_width="0dp"
@@ -13,7 +23,7 @@
         android:layout_margin="@dimen/dimen_5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/image_student">
 
         <EditText
             android:id="@+id/edit_ma_sv"
@@ -21,7 +31,7 @@
             android:layout_height="wrap_content"
             android:hint="Mã sinh viên"
             android:imeOptions="actionNext"
-            android:inputType="text"
+            android:inputType="number"
             android:textSize="@dimen/dimen_text_14" />
 
     </android.support.design.widget.TextInputLayout>
@@ -63,7 +73,7 @@
             android:autofillHints="Lớp sinh viên"
             android:hint="Lớp sinh viên"
             android:imeOptions="actionDone"
-            android:inputType="number"
+            android:inputType="text"
             android:textSize="@dimen/dimen_text_14" />
 
     </android.support.design.widget.TextInputLayout>
@@ -121,8 +131,6 @@
     </LinearLayout>
 
     <TextView
-        app:layout_constraintEnd_toStartOf="@+id/text_save_new_subject"
-        app:layout_constraintTop_toBottomOf="@+id/linear_point"
         android:id="@+id/text_cancel_new_subject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -134,10 +142,10 @@
         android:textAllCaps="true"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/dimen_16sp"
-         />
+        app:layout_constraintEnd_toStartOf="@+id/text_save_new_subject"
+        app:layout_constraintTop_toBottomOf="@+id/linear_point" />
 
     <TextView
-        app:layout_constraintTop_toBottomOf="@+id/linear_point"
         android:id="@+id/text_save_new_subject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -151,6 +159,7 @@
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/dimen_16sp"
         app:layout_constraintBottom_toBottomOf="@+id/radio_point_subject"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_point" />
 
 </android.support.constraint.ConstraintLayout>

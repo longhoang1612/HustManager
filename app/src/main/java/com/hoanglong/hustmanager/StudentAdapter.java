@@ -1,12 +1,15 @@
 package com.hoanglong.hustmanager;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.hoanglong.hustmanager.database.Student;
 
 import java.util.List;
@@ -33,7 +36,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
             mLayoutInflater = LayoutInflater.from(viewGroup.getContext());
         }
         View view = mLayoutInflater.inflate(R.layout.item_student, viewGroup, false);
-        return new StudentViewHolder(view, mOnStudentClickListener);
+        return new StudentViewHolder(view, mOnStudentClickListener, viewGroup.getContext());
     }
 
     interface OnStudentClickListener {
@@ -65,10 +68,14 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         TextView mTextDiemCK;
         @BindView(R.id.text_diem_qt)
         TextView mTextDiemQT;
+        @BindView(R.id.image_student)
+        ImageView mImageStudent;
+        private Context mContext;
 
-        StudentViewHolder(@NonNull View itemView, OnStudentClickListener onStudentClickListener) {
+        StudentViewHolder(@NonNull View itemView, OnStudentClickListener onStudentClickListener, Context context) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            mContext = context;
             mOnStudentClickListener = onStudentClickListener;
             itemView.setOnClickListener(this);
         }
@@ -88,7 +95,10 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
             mTextClass.setText(String.format("Lớp: %s", student.getMaLopHoc()));
             mTextDiemCK.setText(String.format("Điểm quá trình: %s", String.valueOf(student.getDiemQT())));
             mTextDiemQT.setText(String.format("Điểm chuyên cần: %s", String.valueOf(student.getDiemCK())));
-
+            if (student.getImage() == null) {
+                return;
+            }
+            Glide.with(mContext).load(student.getImage()).into(mImageStudent);
         }
     }
 }

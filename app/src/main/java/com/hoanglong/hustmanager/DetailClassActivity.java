@@ -144,6 +144,9 @@ public class DetailClassActivity extends AppCompatActivity implements AddStudent
 
     @Override
     public void onChangeItemListener(long id) {
-        mStudentAdapter.notifyDataSetChanged();
+        mStudentList.clear();
+        mStudentList.addAll(mDatabaseHelper.getStudentWithIdClass(aClass.getMaLH()));
+        mStudentAdapter = new StudentAdapter(mStudentList, this);
+        mRecyclerStudent.setAdapter(mStudentAdapter);
     }
 }

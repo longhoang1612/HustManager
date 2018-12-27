@@ -32,7 +32,7 @@ public class Subject implements Parcelable {
     // Create table SQL query
     static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + "("
-                    + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + COLUMN_ID + " INTEGER PRIMARY KEY,"
                     + COLUMN_HOCKY + " TEXT,"
                     + COLUMN_SUBJECT_CODE + " TEXT,"
                     + COLUMN_NAME + " TEXT,"

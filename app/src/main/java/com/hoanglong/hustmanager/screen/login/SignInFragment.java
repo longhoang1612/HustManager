@@ -98,15 +98,17 @@ public class SignInFragment extends BaseFragment implements View.OnClickListener
                             openTeachActivity();
                             SharedPrefs.getInstance().put(Constants.SPR_LOGIN, true);
                             SharedPrefs.getInstance().put(Constants.PHANQUYEN, 1);
+                            SharedPrefs.getInstance().put(Constants.EMAIL, Email);
                         } else if (phanquyen.equals("Sinh viên")) {
                             hideProgress();
                             Intent intent = new Intent(getActivity(), MainActivity.class);
                             startActivity(intent);
                             SharedPrefs.getInstance().put(Constants.SPR_LOGIN, true);
                             SharedPrefs.getInstance().put(Constants.PHANQUYEN, 0);
+                            SharedPrefs.getInstance().put(Constants.EMAIL, Email);
                         }
                         Snackbar.make(v, "User created successfully! Please continue ", Snackbar.LENGTH_LONG).show();
-                        if(getActivity()!=null){
+                        if (getActivity() != null) {
                             getActivity().finish();
                         }
                     } else {

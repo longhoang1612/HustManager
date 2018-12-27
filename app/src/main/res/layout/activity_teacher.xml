@@ -20,12 +20,13 @@
             android:textColor="@color/colorWhite" />
 
         <ImageView
+            android:id="@+id/ic_exit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="@dimen/dimen_16"
-            android:src="@drawable/ic_account_circle_black_24dp" />
+            android:src="@drawable/ic_exit_to_app_black_24dp" />
 
     </RelativeLayout>
 
