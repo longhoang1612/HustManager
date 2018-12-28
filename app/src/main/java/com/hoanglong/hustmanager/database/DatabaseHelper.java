@@ -280,7 +280,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(Student.TABLET_NAME,
-                new String[]{Student.COLUMN_STUDENT_ID, Student.COLUMN_STUDENT_NAME,Student.COLUMN_STUDENT_IMAGE,
+                new String[]{Student.COLUMN_STUDENT_ID, Student.COLUMN_STUDENT_NAME, Student.COLUMN_STUDENT_IMAGE,
                         Student.COLUMN_STUDENT_MASV, Student.COLUMN_STUDENT_MAHP,
                         Student.COLUMN_STUDENT_LOPHOC, Student.COLUMN_STUDENT_DIEMCK, Student.COLUMN_STUDENT_DIEMQT},
                 Student.COLUMN_STUDENT_ID + "=?",
@@ -312,7 +312,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(Student.COLUMN_STUDENT_IMAGE,student.getImage());
+        values.put(Student.COLUMN_STUDENT_IMAGE, student.getImage());
         values.put(Student.COLUMN_STUDENT_NAME, student.getNameStudent());
         values.put(Student.COLUMN_STUDENT_DIEMQT, student.getDiemQT());
         values.put(Student.COLUMN_STUDENT_DIEMCK, student.getDiemCK());
@@ -322,6 +322,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // updating row
         return db.update(Student.TABLET_NAME, values, Student.COLUMN_STUDENT_MASV + " = ?",
                 new String[]{student.getMaSV()});
+    }
+
+    public void deleteStudent(String msv) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Student.TABLET_NAME, Student.COLUMN_STUDENT_MASV + " = ?",
+                new String[]{msv});
+        db.close();
     }
 
     //POINT

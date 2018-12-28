@@ -1,9 +1,5 @@
 package com.hoanglong.hustmanager.database;
 
-/**
- * Created by amardeep on 10/26/2017.
- */
-
 public class User {
     public String id;
     public String userName;

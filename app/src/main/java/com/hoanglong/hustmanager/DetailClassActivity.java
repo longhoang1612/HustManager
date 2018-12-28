@@ -25,7 +25,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DetailClassActivity extends AppCompatActivity implements AddStudentFragment.OnChangeListener,
-        View.OnClickListener, StudentAdapter.OnStudentClickListener,EditStudentFragment.OnChangeItemListener {
+        View.OnClickListener, StudentAdapter.OnStudentClickListener, EditStudentFragment.OnChangeItemListener {
 
     public static final String BUNDLE_CLASS = "BUNDLE_CLASS";
     @BindView(R.id.ten_hp)
@@ -56,9 +56,9 @@ public class DetailClassActivity extends AppCompatActivity implements AddStudent
             return;
         }
         mStudentList = new ArrayList<>();
-        Log.d("ABCD", "onCreate: "+aClass.getId());
+        Log.d("ABCD", "onCreate: " + aClass.getId());
         mStudentList.addAll(mDatabaseHelper.getStudentWithIdClass(aClass.getMaLH()));
-        if(mStudentList!=null && mStudentList.size() > 0){
+        if (mStudentList != null && mStudentList.size() > 0) {
             Toast.makeText(this, "Có dữ liệu", Toast.LENGTH_SHORT).show();
         }
         updateUI(aClass);
@@ -77,14 +77,10 @@ public class DetailClassActivity extends AppCompatActivity implements AddStudent
 
     @Override
     public void onChangeListener(long id) {
-        Student n = mDatabaseHelper.getStudent(id);
-        if (n != null) {
-            // adding new note to array list at 0 position
-            mStudentList.add(mStudentList.size(), n);
-
-            // refreshing the list
-            mStudentAdapter.notifyDataSetChanged();
-        }
+        mStudentList.clear();
+        mStudentList.addAll(mDatabaseHelper.getStudentWithIdClass(aClass.getMaLH()));
+        mStudentAdapter = new StudentAdapter(mStudentList, this);
+        mRecyclerStudent.setAdapter(mStudentAdapter);
     }
 
     @Override
@@ -128,12 +124,13 @@ public class DetailClassActivity extends AppCompatActivity implements AddStudent
                                         ft.remove(prev);
                                     }
                                     ft.addToBackStack(null);
-                                    DialogFragment dialogFragment = EditStudentFragment.newInstance(aClass,student);
+                                    DialogFragment dialogFragment = EditStudentFragment.newInstance(aClass, student);
                                     dialogFragment.show(ft, EditStudentFragment.TAG);
                                 }
                                 break;
                             case 1:
                                 Toast.makeText(DetailClassActivity.this, "Xóa", Toast.LENGTH_SHORT).show();
+                                mDatabaseHelper.deleteStudent(student.getMaSV());
                                 break;
                         }
                     }
