@@ -21,14 +21,8 @@ public class MainActivity extends BaseActivity implements NewSubjectFragment.OnC
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    Fragment fragment = getSupportFragmentManager().findFragmentByTag(OverviewFragment.TAG);
-                    if (fragment == null) {
-                        fragment = new OverviewFragment();
-                    }
-                    openFragment(fragment, OverviewFragment.TAG);
-                    return true;
                 case R.id.navigation_dashboard:
+                    Fragment fragment;
                     fragment = getSupportFragmentManager().findFragmentByTag(PersonFragment.TAG);
                     if (fragment == null) {
                         fragment = new PersonFragment();
