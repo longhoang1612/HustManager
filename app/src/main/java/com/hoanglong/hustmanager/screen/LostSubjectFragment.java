@@ -1,4 +1,4 @@
-package com.hoanglong.hustmanager;
+package com.hoanglong.hustmanager.screen;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,9 +7,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.hoanglong.hustmanager.R;
 import com.hoanglong.hustmanager.base.BaseFragment;
 import com.hoanglong.hustmanager.database.Subject;
-import com.hoanglong.hustmanager.screen.FailSubjectAdapter;
 import com.hoanglong.hustmanager.utils.Constants;
 
 import java.util.ArrayList;

@@ -3,7 +3,7 @@ package com.hoanglong.hustmanager.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.hoanglong.hustmanager.HustManager;
+import com.hoanglong.hustmanager.screen.HustManager;
 
 public class SharedPrefs {
     private static final String PREFS_NAME = "share_prefs";

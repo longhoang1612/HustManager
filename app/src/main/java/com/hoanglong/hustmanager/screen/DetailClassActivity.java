@@ -1,4 +1,4 @@
-package com.hoanglong.hustmanager;
+package com.hoanglong.hustmanager.screen;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hoanglong.hustmanager.R;
 import com.hoanglong.hustmanager.database.Class;
 import com.hoanglong.hustmanager.database.DatabaseHelper;
 import com.hoanglong.hustmanager.database.Student;

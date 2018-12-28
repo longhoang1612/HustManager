@@ -48,7 +48,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static android.app.Activity.RESULT_OK;
-import static com.hoanglong.hustmanager.DetailClassActivity.BUNDLE_CLASS;
+import static com.hoanglong.hustmanager.screen.DetailClassActivity.BUNDLE_CLASS;
 
 public class AddStudentFragment extends DialogFragment implements View.OnClickListener {
 

@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.hoanglong.hustmanager.R;
-import com.hoanglong.hustmanager.TabletPointFragment;
 import com.hoanglong.hustmanager.base.BaseFragment;
 import com.hoanglong.hustmanager.database.DatabaseHelper;
 import com.hoanglong.hustmanager.database.Subject;

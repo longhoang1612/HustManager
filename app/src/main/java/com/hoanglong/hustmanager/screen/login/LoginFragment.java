@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 
 import com.hoanglong.hustmanager.R;
-import com.hoanglong.hustmanager.TeacherActivity;
+import com.hoanglong.hustmanager.screen.TeacherActivity;
 import com.hoanglong.hustmanager.base.BaseFragment;
 import com.hoanglong.hustmanager.database.DatabaseHelper;
 import com.hoanglong.hustmanager.database.User;

@@ -6,7 +6,7 @@
     android:background="@color/color_white"
     android:clickable="true"
     android:focusable="true"
-    tools:context=".TabletPointFragment">
+    tools:context=".screen.TabletPointFragment">
 
     <RelativeLayout
         android:id="@+id/relative_top"

@@ -1,4 +1,4 @@
-package com.hoanglong.hustmanager;
+package com.hoanglong.hustmanager.screen;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,6 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hoanglong.hustmanager.R;
 import com.hoanglong.hustmanager.database.DatabaseHelper;
 import com.hoanglong.hustmanager.database.Subject;
 

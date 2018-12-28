@@ -6,9 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.hoanglong.hustmanager.LostSubjectFragment;
 import com.hoanglong.hustmanager.R;
-import com.hoanglong.hustmanager.TabletPointFragment;
 import com.hoanglong.hustmanager.base.BaseFragment;
 import com.hoanglong.hustmanager.database.Subject;
 import com.hoanglong.hustmanager.utils.Constants;

@@ -1,4 +1,4 @@
-package com.hoanglong.hustmanager;
+package com.hoanglong.hustmanager.screen;
 
 import android.app.Application;
 

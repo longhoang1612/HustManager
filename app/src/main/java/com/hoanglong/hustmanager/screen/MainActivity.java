@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.MenuItem;
 
 import com.hoanglong.hustmanager.R;
-import com.hoanglong.hustmanager.TabletPointFragment;
 import com.hoanglong.hustmanager.base.BaseActivity;
 import com.hoanglong.hustmanager.screen.dialog.AddPointFragment;
 import com.hoanglong.hustmanager.screen.dialog.NewSubjectFragment;

@@ -1,4 +1,4 @@
-package com.hoanglong.hustmanager;
+package com.hoanglong.hustmanager.screen;
 
 
 import android.os.Bundle;
@@ -16,10 +16,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hoanglong.hustmanager.R;
 import com.hoanglong.hustmanager.base.BaseFragment;
 import com.hoanglong.hustmanager.database.DatabaseHelper;
 import com.hoanglong.hustmanager.database.Subject;
-import com.hoanglong.hustmanager.screen.PointAdapter;
 import com.hoanglong.hustmanager.screen.dialog.AddPointFragment;
 import com.hoanglong.hustmanager.utils.Constants;
 

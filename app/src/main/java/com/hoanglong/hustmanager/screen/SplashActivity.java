@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.hoanglong.hustmanager.R;
-import com.hoanglong.hustmanager.TeacherActivity;
 import com.hoanglong.hustmanager.base.BaseActivity;
 import com.hoanglong.hustmanager.screen.login.LoginActivity;
 import com.hoanglong.hustmanager.utils.Constants;

@@ -1,4 +1,4 @@
-package com.hoanglong.hustmanager;
+package com.hoanglong.hustmanager.screen;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,10 +11,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.hoanglong.hustmanager.R;
 import com.hoanglong.hustmanager.database.Class;
 import com.hoanglong.hustmanager.database.DatabaseHelper;
 import com.hoanglong.hustmanager.database.User;
-import com.hoanglong.hustmanager.screen.ClassAdapter;
 import com.hoanglong.hustmanager.screen.login.LoginActivity;
 import com.hoanglong.hustmanager.utils.Constants;
 import com.hoanglong.hustmanager.utils.SharedPrefs;
